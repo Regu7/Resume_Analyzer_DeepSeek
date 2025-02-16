@@ -14,17 +14,20 @@ A Streamlit-based application that analyzes resumes using GROQ LLM API (deepseek
 
 ## Demo Screenshots
 
+*Resume upload interface with job description input*
 ![Upload Page](screenshots/page1.png)
-*Resume upload interface with job description input*
 
+
+*Extract text from Resume*
 ![Extracted Text from Resume Page](screenshots/ExtractedText.png)
-*Resume upload interface with job description input*
 
-![Analysis Results](screenshots\response1.png)
+
 *Detailed analysis showing match score and qualifications*
+![Analysis Results](screenshots/response1.png)
 
-![Suggestions](screenshots\response2.png)
+
 *Suggestions to improve the resume*
+![Suggestions](screenshots/response2.png)
 
 ## Prerequisites
 
