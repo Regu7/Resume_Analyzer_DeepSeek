@@ -41,7 +41,6 @@ def upload_item_to_dynamodb(table_name, item):
         print(f"Error uploading item: {e.response['Error']['Message']}")
 
 
-
 # Configure Streamlit page
 st.set_page_config(
     page_title="Resume Analyzer",
@@ -137,7 +136,7 @@ def main():
 
     # File upload for resume
     uploaded_file = st.file_uploader("Upload your resume (PDF)", type=['pdf'])
-    
+
     # Job description input
     job_description = st.text_area(
         "Paste the job description here",
@@ -148,14 +147,14 @@ def main():
     # Create columns for resume text and analysis
     if uploaded_file and job_description:
         col1, col2 = st.columns([1, 1])
-        
+
         with col1:
             st.subheader("Extracted Resume Text")
             # Extract and display resume text
             resume_text = extract_text_from_pdf(uploaded_file)
             if resume_text:
                 st.text_area("Extracted Text", resume_text, height=400)
-            
+
         with col2:
             st.subheader("Analysis")
             if st.button("Analyze Resume"):
@@ -178,13 +177,14 @@ def main():
                         upload_item_to_dynamodb(table_name, item)
                         print('Succesfully uploaded to AWS')
                     except:
+                        print("Un-succesfull")
                         pass
 
                     if analysis:
                         st.markdown(f"""<div class="analysis-box-think"><h2>Thinking</h2>{analysis.split('</think>')[0]}</div> 
                         <div class="analysis-box-result"><h2>Response</h2>{analysis.split('</think>')[1]}</div>""", 
                                   unsafe_allow_html=True)
-                        
+
                         # Add download button for analysis
                         analysis_bytes = analysis.encode()
                         st.download_button(
@@ -193,8 +193,6 @@ def main():
                             file_name="resume_analysis.txt",
                             mime="text/plain"
                         )
-
-                        
 
     # Add helpful information
     with st.expander("💡 Tips for better results"):
